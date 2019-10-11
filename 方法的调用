@@ -1,1 +1,25 @@
+package method_use;
+//有返回值和无返回值
+public class Demo02 {
+	public void main(String[] args){
+		int sum = getSum1(3,2);//单独调用
+		System.out.println(sum);//打印调用
+		System.out.println("========");
+		getSum2(2,3);//赋值调用
+		System.out.println("========");
+		System.out.println(getSum1(1,3));
+		System.out.println("========");
+		//System.out.println(getSum2(1,2));  不可以，因为函数返回的是void
+	}
+	
+	public int getSum1(int a,int b){
+		int sum = a+b;
+		return sum;
+	}
+	
+	public void getSum2(int a,int b ){
+		int sum = a+b;
+		System.out.println(sum);
+	}
+}
 
