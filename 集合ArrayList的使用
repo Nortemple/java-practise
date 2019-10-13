@@ -1,0 +1,18 @@
+package object_type;
+//数组长度不能改变，但是Array List的集合长度是可以随意改变的
+//ArrayList<E>,<E>代表泛型，也就是装在集合里的元素都是什么类型，泛型只能是引用类型，不能是基本类
+
+//PS:对于ArrayList集合来说，直接打印得到的不是地址值，而是内容，如果内容是空，得到的是空的中括号【】
+import java.util.ArrayList;
+public class Demo02ArrayList {
+	public static void main(String[] args){
+		//创建了一个ArrayList集合，集合名称list，里面装的全部都是String字符串类型的数据
+		//备注：从JDK1.7开始，右侧尖括号里可以不写内容，但尖括号还是要写的
+		ArrayList<String> list = new ArrayList<>();
+		System.out.println(list);//为空，则里面是个[]
+		
+		//向集合里添加数据需要用到add()方法，
+		list.add("zy");
+		System.out.println(list);
+	}
+}
