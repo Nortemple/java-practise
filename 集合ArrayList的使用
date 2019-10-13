@@ -16,3 +16,256 @@ public class Demo02ArrayList {
 		System.out.println(list);
 	}
 }
+
+
+package object_type;
+import java.util.ArrayList;
+//如果希望向集合ArrayList当中存储基本类型数据，需要使用基本类型对应的”包装类“
+public class Demo02ArrayListBasic {
+	public static void main(String[] args){
+		ArrayList<String> listA = new ArrayList<>();
+		//错误写法，泛型只能是引用类型
+		//ArrayList<int> listB = new ArrayList<>();
+		
+		ArrayList<Integer> listB = new ArrayList<>();
+		listB.add(100);
+		listB.add(200);
+		System.out.println(listB);
+		
+		int a = listB.get(0);
+		System.out.print(a);
+		
+	}
+}
+
+
+package object_type;
+import java.util.ArrayList;
+public class Demo02ArrayListEach {
+	public static void main(String[] args){
+		ArrayList<String> list = new ArrayList<>();
+		
+		list.add("迪丽热巴");
+		list.add("古力娜扎");
+		list.add("马儿扎哈");
+	
+		//遍历集合
+		for(int i=0;i<list.size();i++){
+			System.out.println(list.get(i));
+		}
+	}
+}
+
+
+package object_type;
+//ArrayList的常用方法
+import java.util.ArrayList;
+public class Demo02ArrayListMethod {
+	public static void main(String[] args){
+		ArrayList<String> list = new ArrayList<>();
+		System.out.println(list);//[]
+		
+		//向集合中添加元素：
+		boolean success = list.add("柳岩");
+		System.out.println(list);//柳岩
+		System.out.println("添加的操作是否成功：" + success);//true
+		
+		list.add("高圆圆");
+		list.add("赵又廷");
+		list.add("李小璐");
+		list.add("贾乃亮");
+		System.out.println(list);
+		
+		//从集合中获取元素:get
+		System.out.println("第2号索引值： " + list.get(2));
+		
+		//从集合中删除元素，remove，索引值从0开始
+		String whoRemoved = list.remove(3);
+		System.out.println("被删除的人是"+whoRemoved);
+		System.out.println(list);
+		
+		//获取集合的长度尺寸，也就是其中元素的个数
+		int size = list.size();
+		System.out.println(size);
+		
+	}
+}
+
+
+package object_type;
+
+import java.util.ArrayList;
+
+//题目：定义以指定格式打印集合的方法（ArrayList类型作为参数）使用{}括起集合，使用@分割每个元素（@a@b@c）
+public class Demo02ArrayListPrint {
+	public static void main(String[] args){
+		ArrayList<String> list = new ArrayList<>();
+		list.add("张三丰");
+		list.add("宋远桥");
+		list.add("张无忌");
+		list.add("张翠山");
+		System.out.println(list);
+		ArrayListPrint(list);
+	
+		}
+		
+		public static void ArrayListPrint(ArrayList<String> list){
+			System.out.print("{");
+			for(int i=0;i<4;i++){
+				String name = list.get(i);
+				if(i == list.size()-1){
+			System.out.print(name + "}");
+				}else{
+			System.out.print(name + "@");
+			}
+		}
+	}
+}
+
+
+package object_type;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+//题目：生成6个1~33之间的随机整数，添加到集合，并遍历集合
+public class Demo02ArrayListRandom {
+	public static void main(String[] args){
+		Random sc = new Random();
+		ArrayList<Integer> list = new ArrayList<>();
+		
+		for(int i=0;i<6;i++){
+			int num = sc.nextInt(33) + 1;
+			list.add(num);
+		}
+		//遍历集合
+		for(int i=0;i<6;i++){
+			System.out.println(list.get(i));
+		}
+	}
+
+}
+
+
+package object_type;
+
+import java.util.ArrayList;
+import java.util.Random;
+
+//题目：用一个大集合存入20个随机数字，然后筛选其中的偶数元素，放到小集合中。要求使用自定义方法实现
+//需要创建一个大集合，用来存储int数字：<Integer>;随机数字用Random nextInt；循环20次，把随机数字放入大集合：for循环
+//自定义一个方法用来筛选：根据大集合筛选符合条件的元素
+//三要素：返回值类型，方法名称：getSmallList参数列表：ArrayList大集合
+//判断是否是偶数
+public class Demo02ArrayListReturn {
+	public static void main(String[] args){
+		ArrayList<Integer> bigList = new ArrayList<>();
+		Random r = new Random();
+		
+		for(int i=0;i<20;i++){
+			int num = r.nextInt(100)+1;//1~100
+			bigList.add(num);
+		}
+
+		for(int h=0;h<bigList.size();h++){
+			System.out.println(bigList.get(h));
+		}
+		
+		System.out.println("========================");
+		ArrayList<Integer> smallList = getSmallList(bigList);
+		
+		for(int h=0;h<smallList.size();h++){
+			System.out.println(smallList.get(h));
+		}
+		System.out.println("偶数总共有多少个： "+smallList.size());
+		}
+	
+		//这个方法接收大集合参数，返回小集合结果
+		public static ArrayList<Integer> getSmallList(ArrayList<Integer> bigList){
+			//创建一个小集合，来装偶数结果
+			ArrayList<Integer> smallList = new ArrayList<>();
+			for(int i=0;i<bigList.size();i++){
+				int num = bigList.get(i);
+				if (num%2==0){
+					smallList.add(num);
+				}
+			}
+			return smallList;
+		}
+	}
+
+
+package object_type;
+
+import java.util.ArrayList;
+
+//定义学生对象，添加到集合，并遍历
+//分析：1、定义标准学生类，四个部分：private修饰，无参构造,全仓奥灶，getset
+//2、创建一个集合，用来存储对象
+//3、遍历
+public class Demo02ArrayListStudent {
+		public static void main(String[] args){
+			ArrayList<Student> list = new ArrayList<>();
+			//创建了四个对象
+			Student one = new Student("zy",20);
+			Student two = new Student("zyy",19);
+			Student three = new Student("zyyy",18);
+			Student four = new Student("zyyyy",13);
+			//把对象添加到集合中
+			list.add(one);
+			list.add(two);
+			list.add(three);
+			list.add(four);
+			//
+			for(int i=0;i<4;i++){
+				Student stu = list.get(i);
+				System.out.println("姓名： " + stu.getName() +"年龄"+ stu.getAge());
+			}
+		}
+
+		
+}
+
+package object_type;
+/*
+ 一个标准的类通常要拥有下面四个组成部分：
+ 1、所有的成员变量，都要使用private关键字修饰。而使用了Private后，在其他类中调用只能在这个类中定义好get,set方法
+ 2、为每一个成员变量编写一对儿getter和setter方法
+ 3、编写一个无参数的构造方法。系统默认有无参数构造方法，但是当构造方法有方法的重载时系统就不再构造无参，需要自己手动写。
+ 4、编写一个有参数的构造方法。这是为了调用
+ */
+public class Student {
+	private String name;
+	private int age;
+	
+	public Student(){}
+	
+	public Student(String name,int age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	public void setName(String name){
+		this.name = name;
+	}
+	
+
+	
+	public void  setAge(int age){
+		this.age = age;
+	}
+	
+
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return name;
+	}
+
+	public int getAge() {
+		// TODO Auto-generated method stub
+		return age;
+	}
+	
+	
+}
