@@ -69,4 +69,126 @@ public class Demo01Static_Definition {
 }
 
 
+package static_use;
 
+public class Demo03StaticStudent {
+	public static void main(String[] args){
+		//首先设置教室，这是静态的东西，应该通过类名称进行调用
+		Student.room = "101教室";
+		Student one = new Student("郭靖",20);
+		System.out.println("one的姓名： " + one.getName());
+		System.out.println("one的姓名： " + one.getAge());
+		System.out.println("one的教室： " + Student.room);//也可以用one.room但不推荐
+		
+		Student two = new Student("黄蓉",19);
+		System.out.println("two的姓名： " + two.getName());
+		System.out.println("two的姓名： " + two.getAge());
+		System.out.println("two的教室： " + Student.room);
+	}
+}
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+package static_use;
+/*
+
+ * */
+public class Myclass {
+	int num;//成员方法
+	static int numStatic;//静态变量
+	
+	//成员方法
+	public void method (){
+		System.out.println("这是一个普通的成员方法");
+		//成员方法可以访问变量
+		System.out.println(num);
+		//成员方法可以访问静态变量
+		System.out.println(numStatic);
+	}
+	
+	public static void methodStatic(){
+		System.out.println("这是一个静态变量");
+		//静态方法可以访问静态变量
+		System.out.println(numStatic);
+		//静态方法不可以访问非静态变量
+		//System.out.println(num);//报错，静态只能直接访问静态，不能直接访问非静态
+		//System.out.println(this);//报错，静态方法当中不能用this
+	}
+}
+
+
+package static_use;
+/*
+ * 一蛋使用了static修饰成员方法了，那么就成为了静态方法，静态方法不再属于对象，而是属于类的
+ * 如果没有static关键字，那么必须首先创建对象，然后通过对象调用它
+ * 
+ * 静态变量：类名称，静态变量
+ * 静态方法：类名称，静态方法
+ * 
+ * 注意事项：
+ * 1、静态只能直接访问静态，不能直接访问非静态
+ * 原因：因为在内存当中是[先]有的静态内容，[后]有的非静态内容
+ * ”先人不知道后人，但是后人知道先人“
+ * 2、静态方法当中不能用this
+ * 原因：this代表当前对象，通过谁调用方法，谁就是当前对象。
+ * 
+ * */
+public class Demo02StaticMethod {
+	public static void main(String[] args){
+		Myclass obj = new Myclass();//创建对象
+		obj.method();//然后才能使用没有static关键字的内容
+		
+		Myclass.methodStatic();//通过类直接调用，也可以通过对象名调用
+		
+		
+		myMethod();//对于本类当中的静态方法，可以省略类
+		Demo02StaticMethod.myMethod();//完全等效
+	}
+	
+	public static void myMethod(){
+		System.out.println("自己的方法");
+	}
+}
+
+----------------------------------------------------------------------------------------------------------------------------------------
+package static_use;
+/*
+ * 静态代码块的格式是：
+ * public class 类名称{
+ * 		static{
+ * 			//静态代码块的内容
+ * }
+ * }
+ * 特点：在第一次用到本类时，静态代码块执行唯一的一次
+ * 静态内容总是优先于非静态，所以静态代码块比构造方法先执行
+ * 静态代码的用途：用来一次性的对静态变量进行赋值。JDBC常用
+ * */
+public class Demo04Static {
+	public static void main(String[] args){
+		Person one = new Person();
+		Person two = new Person();
+
+	}
+}
+
+package static_use;
+
+public class Person {
+		static {
+			System.out.println("静态代码块执行： ");
+		}
+		
+		public void p(){
+			System.out.println("我想看看你会不会执行两次");
+			
+		}
+		
+		public Person(){
+		System.out.println("构造方法执行");
+			
+		}
+}
+//输出结果：静态代码块执行： 
+//构造方法执行
+//构造方法执行
+
+-----------------------------------------------------------------------------------------------------------------------------------------
