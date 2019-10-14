@@ -1,0 +1,72 @@
+package static_use;
+
+	public class Student {
+		private int id;
+		private String name;
+		private int age;
+		static String room;//所在教室
+		private static int idCounter = 0;//学号计数器，每当new了一个新对象的时候，计数器加一
+		
+		public Student(){
+			idCounter++;
+		}
+		
+		public Student(String name,int age){
+			this.name = name;
+			this.age = age;
+			this.id = ++idCounter;//先从0变成1
+		}
+		
+		public void setId(int id){
+			this.id = id;
+		}
+		
+		public int id(){
+			return id;
+		}
+		
+		public void setName(String name){
+			this.name = name;
+		}
+
+		public void  setAge(int age){
+			this.age = age;
+		}
+
+		public String getName() {
+			// TODO Auto-generated method stub
+			return name;
+		}
+
+		public int getAge() {
+			// TODO Auto-generated method stub
+			return age;
+		}
+		
+	}
+
+
+package static_use;
+/*
+ * 一旦用了static关键字，
+ * 那么这样的内容不再属于对象自己，
+ * 而是属于类的，所以凡是本类的对象，都共享同一份
+ * 
+ * */
+public class Demo01Static_Definition {
+	public static void main(String[] args){
+		Student one = new Student("郭靖",20);
+		one.room = "101教室";
+		System.out.println("姓名"+one.getName()+"年龄"+one.getAge()+"学号"+one.id());
+		
+		
+		Student two = new Student("黄蓉",19);
+		System.out.println("姓名"+two.getName()+"年龄"+two.getAge()+"学号"+two.id());
+
+
+		
+	}
+}
+
+
+
