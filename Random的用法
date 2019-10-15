@@ -1,0 +1,84 @@
+package object_type;
+import java.util.Random;
+//random使用
+//1、导包：java.util.Random
+//2、创建：Random r = new Random();
+//3、使用：获取一个随机的Int数字（查询API手册）
+//4、使用：获取一个随机的Int数字（参数代表了范围，左闭右开区间）：int num = r.nextInt(3);
+//实际上代表的是[0,3),
+public class Demo01Random {
+	public static void main(String[] args){
+		Random r = new Random();
+		int num = r.nextInt();//实例化一个r对象，调用类RANDOM里的方法，再命名。
+		System.out.println("随机生成的数字是： " + num);
+		
+		System.out.println("============================");
+		
+		Random a = new Random();
+		for(int i=0;i<100;i++){
+			int num1 = a.nextInt(3);//随机生成0~2之间的数字
+			System.out.print(num1+" ");
+		}
+	}
+
+}
+
+
+package object_type;
+//题目要求：
+import java.util.Random;
+//根据Int变量的n的值，来获取随机数字，范围是【1,n】,可以取到1也可以取到n
+public class Demo03Random {
+	public static void main(String[] args){
+		Random r = new Random();//r具有这个类的性质可以使用这个类里面的方法
+		
+		for (int i=1;i<100;i++){
+		int n = 3;
+		int num = r.nextInt(n);//这里的n要赋值
+		num = num+1;
+		System.out.print(num+" ");
+		}
+		
+	}
+}
+
+
+
+package object_type;
+//用代码模拟猜数字的小游戏
+import java.util.Scanner;
+import java.util.Random;
+
+public class Demo04RandomGame {
+
+	public static void main(String[] args) {
+		
+
+		
+		Random ac  = new Random();
+		int num1 = ac.nextInt(100)+1;//1~100的数字
+		
+		Scanner sc = new Scanner(System.in);//这句话不能放入循环体内
+		
+		
+		while(true){
+
+			System.out.println("请输入你猜测的数字： ");
+			int guess = sc.nextInt();//此处的nextInt用于再键盘上获取数据
+			
+		if(guess>num1){
+			System.out.println("太大了，请重试");
+		}else if(guess<num1){
+			System.out.println("太小了，请重试");
+		}else{
+			System.out.println("恭喜你，猜对了");
+			
+		}
+		
+
+		
+		}
+
+	}
+
+}
