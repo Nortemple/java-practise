@@ -1,0 +1,78 @@
+(1)一些网站设定了一些指定密码的规则。编写一个方法，检验一个字符串是否是合法的密码？假设密码的规则如下：
+1）密码必须至少有8个字符；
+2）密码只能包括字母和数字；
+3）密码必须至少有两个数字。
+编写一个程序，提示用户输入密码，如果该密码符合规则就显示 “Valid Password”，否则显示 “Invalid Password”
+<法一>
+package ex4;
+
+import java.util.Scanner;
+
+public class Test {
+	public static void main(String[] args){
+		Scanner sc = new Scanner(System.in);
+		System.out.println("请输入密码： ");
+		String password = sc.next();
+		int a = password.length();
+		int num = 0;
+		int num1 = 0;
+		if(a>=8){
+			for(int i=0;i<a;i++){
+				if((password.charAt(i)>='A' && password.charAt(i)<='Z') || (password.charAt(i)>='a' && password.charAt(i)<='z')
+						||( password.charAt(i)>='0' && password.charAt(i)<='9')){
+					if(password.charAt(i)>='0' && password.charAt(i)<='9'){
+						num = num+1;	
+					}
+					}
+				else{num1++;}
+				}
+			}
+		if (num>=2){
+			if(num1>0){
+			System.out.println("Invalid Password");
+			
+		}else{System.out.println("Valid Password.");}
+			
+}
+		else{System.out.println("Invalid Password");}
+	}
+}
+
+
+<法二>
+package ex4;
+import java.util.Scanner;
+public class StreamMapDemo {
+	public static void main(String[] args) {
+		// TODO 自动生成的方法存根
+		//String []a=new String[100];
+		int c=0;
+		int d=0;
+		System.out.println("请输入您的密码：");
+    Scanner input=new Scanner(System.in);
+    String b=input.next();
+    char[] a=b.toCharArray();//将密码的字符串转换成数组
+    System.out.println("密码的长度："+a.length);
+    for(int i=0;i<a.length;i++)
+    {
+    	if('0'<=a[i]&&a[i]<='9')
+    	{	c++;}
+    	else if('A'<=a[i]&&a[i]<='Z'||'a'<=a[i]&&a[i]<='z') {d++;}
+    }
+    System.out.println("密码中数字的个数："+c);
+    System.out.println("密码中字母的个数："+d);
+    int e;
+    e=c+d;
+  // System.out.println(e);
+    if(a.length<8) {
+    	System.out.println("Invalid Password");
+    }else if(e!=a.length) {
+    	System.out.println("Invalid Password");
+    }else if(c<2) {
+    	System.out.println("Invalid Password");
+    }else {
+    	System.out.println("valid Password");
+    }
+    input.close();
+}
+}
